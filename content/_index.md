@@ -10,3 +10,4 @@ description = "Topic by topic breakdowns of everything you need to know for the 
         - [Content Distribution Networks](./articles/01-network-design-cdn)
         - [Global Traffic Management](./articles/02-network-design-global-traffic)
         - [Global Traffic Integration Patterns](./articles/03-network-design-integrations)
+        - [Global Network Requirements](./articles/04-network-design-global-requirements)
