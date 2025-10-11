@@ -13,12 +13,11 @@ description = "Topic by topic breakdowns of everything you need to know for the 
         - [Evaluating Global Network Requirements](./articles/04-network-design-global-requirements)
     - 1.2 DNS Solutions
         - [DNS Protocol Review](./articles/05-network-design-dns)
+        - [DNS Logging and Monitoring](./articles/06-network-design-dns-monitoring)
 
 ## Upcoming Articles
 
 - 1.2 DNS Solutions
-    - DNS Protocol
-    - DNS Logging and monitoring
     - Amazon Route 53
     - Route 53 Integrations
     - Hybrid DNS with Route 53
