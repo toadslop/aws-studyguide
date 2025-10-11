@@ -14,11 +14,11 @@ description = "Topic by topic breakdowns of everything you need to know for the 
     - 1.2 DNS Solutions
         - [DNS Protocol Review](./articles/05-network-design-dns)
         - [DNS Logging and Monitoring](./articles/06-network-design-dns-monitoring)
+        - [Route 53 Overview](./articles/07-network-design-route-53)
 
 ## Upcoming Articles
 
 - 1.2 DNS Solutions
-    - Amazon Route 53
     - Route 53 Integrations
     - Hybrid DNS with Route 53
     - Domain registration
