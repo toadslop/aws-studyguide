@@ -14,6 +14,8 @@ Hello again, cloud explorers! Bit here — ready to help you dig into one of the
 
 Whether your network is public, private, or a mix of both, understanding how DNS works is key to designing reliable architectures. This article focuses on the **core concepts of the DNS protocol** that you need to know for the **AWS Advanced Networking Specialty** exam — and for any serious networking work.
 
+<!--more-->
+
 ---
 
 ## 🌍 What Is DNS?
