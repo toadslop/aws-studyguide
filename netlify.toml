@@ -1,6 +1,0 @@
-[build]
-publish = "public"
-command = "zola build"
-
-[context.production.environment]
-ZOLA_VERSION = "0.21.0"
