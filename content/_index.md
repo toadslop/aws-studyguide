@@ -11,6 +11,8 @@ description = "Topic by topic breakdowns of everything you need to know for the 
         - [Global Traffic Management](./articles/02-network-design-global-traffic)
         - [Global Traffic Integration Patterns](./articles/03-network-design-integrations)
         - [Evaluating Global Network Requirements](./articles/04-network-design-global-requirements)
+    - 1.2 DNS Solutions
+        - [DNS Protocol Review](./articles/05-network-design-dns)
 
 ## Upcoming Articles
 
