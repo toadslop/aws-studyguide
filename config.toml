@@ -1,6 +1,6 @@
 base_url = "https://aws-studyguide.vercel.app/"
-title = "AWS Networking Study Guide"
-description = "Everything you need to know to pass the AWS Networking Specialty Exam"
+title = "Bit's Certification Guides"
+description = "Short articles breaking down key strategies and concepts for AWS certifications."
 default_language = "en"
 theme = "DeepThought"
 output_dir = "public"
