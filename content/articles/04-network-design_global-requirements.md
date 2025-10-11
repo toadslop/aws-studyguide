@@ -110,8 +110,6 @@ When designing a solution, first identify **traffic and user requirements**:
 
 ## 5. Exam Tips
 
-* **Inbound traffic** = user → AWS (CloudFront, GA, Route 53)
-* **Outbound traffic** = AWS origin → edge → user (CloudFront caches and delivers content)
 * **Layer awareness:**
 
   * CloudFront = Layer 7, caching + HTTP acceleration
