@@ -40,3 +40,12 @@ description = "Topic by topic breakdowns of everything you need to know for the 
     - Choosing a load balancer based on the use case
     - Load balancers and auto scaling
     - Adding a load balancer to existing deployments
+- 1.4 Logging and Monitoring on AWS and hybrid networks
+    - Network Visibility with CloudWatch metrics, agents, logs, alarms, dashboards, and insights
+    - Network Visibility with Transit Gateway Network Manager
+    - Analyzing Intra-VPC connectivity VPC Reachability Analyzer
+    - Visibility with flow logs and traffic mirroring
+    - Network access logging
+    - Identifying Network Logging and Monitoring Requirements
+    - Metrics for Network Visibility
+    - Capturing Baseline Network Performance
