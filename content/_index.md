@@ -13,13 +13,13 @@ description = "Topic by topic breakdowns of everything you need to know for the 
         - [Evaluating Global Network Requirements](./articles/04-network-design-global-requirements)
     - 1.2 DNS Solutions
         - [DNS Protocol Review](./articles/05-network-design-dns)
-        - [DNS Logging and Monitoring](./articles/06-network-design-dns-monitoring)
+        - [DNS Logging and Monitoring on AWS](./articles/06-network-design-dns-monitoring)
         - [Route 53 Overview](./articles/07-network-design-route-53)
+        - [Route 53 Integrations](./articles/08-network-design-route-53-integrations)
 
 ## Upcoming Articles
 
 - 1.2 DNS Solutions
-    - Route 53 Integrations
     - Hybrid DNS with Route 53
     - Domain registration
     - Using Route 53 Public Hosted Zones
