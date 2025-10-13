@@ -16,11 +16,11 @@ description = "Topic by topic breakdowns of everything you need to know for the 
         - [DNS Logging and Monitoring on AWS](./articles/06-network-design-dns-monitoring)
         - [Route 53 Overview](./articles/07-network-design-route-53)
         - [Route 53 Integrations](./articles/08-network-design-route-53-integrations)
+        - [Route 53 for Hybrid, Multi-account, and Multi-region Scenarios](./articles/09-network-design-route-53-hybrid-multiaccount-multiregion)
 
 ## Upcoming Articles
 
 - 1.2 DNS Solutions
-    - Hybrid DNS with Route 53
     - Domain registration
     - Using Route 53 Public Hosted Zones
     - Using Route 53 Private Hosted Zones
