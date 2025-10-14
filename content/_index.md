@@ -19,11 +19,11 @@ description = "Topic by topic breakdowns of everything you need to know for the 
         - [Route 53 for Hybrid, Multi-account, and Multi-region Scenarios](./articles/09-network-design-route-53-hybrid-multiaccount-multiregion)
         - [Domain Registration](./articles/10-network-design-domain-registration)
         - [Route 53 Public Hosted Zones](./articles/11-network-design-public-hosted-zones)
+        - [Route 53 Private Hosted Zones](./articles/12-network-design-private-hosted-zones)
 
 ## Upcoming Articles
 
 - 1.2 DNS Solutions
-    - Using Route 53 Private Hosted Zones
     - Using Route 53 Resolver Endpoints
     - Using Route 53 for Global Traffic Management
     - Creating and managing domain registrations
