@@ -20,12 +20,12 @@ description = "Topic by topic breakdowns of everything you need to know for the 
         - [Domain Registration](./articles/10-network-design-domain-registration)
         - [Route 53 Public Hosted Zones](./articles/11-network-design-public-hosted-zones)
         - [Route 53 Private Hosted Zones](./articles/12-network-design-private-hosted-zones)
+        - [Route 53 Resolver Endpoints](./articles/13-network-design-resolver-endpoints)
+        - [Route 53 for Global Traffic Management](./articles/14-network-design-route-53-global-traffic)
 
 ## Upcoming Articles
 
 - 1.2 DNS Solutions
-    - Using Route 53 Resolver Endpoints
-    - Using Route 53 for Global Traffic Management
     - Creating and managing domain registrations
 - 1.3 Load Balancing for Availablity, Security, and Scalability
     - Load Balancing at different network layers
