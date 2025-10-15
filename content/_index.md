@@ -22,11 +22,10 @@ description = "Topic by topic breakdowns of everything you need to know for the 
         - [Route 53 Private Hosted Zones](./articles/12-network-design-private-hosted-zones)
         - [Route 53 Resolver Endpoints](./articles/13-network-design-resolver-endpoints)
         - [Route 53 for Global Traffic Management](./articles/14-network-design-route-53-global-traffic)
+        - [Creating and Managing Domain Registrations](./articles/15-network-design-domain-registration)
 
 ## Upcoming Articles
 
-- 1.2 DNS Solutions
-    - Creating and managing domain registrations
 - 1.3 Load Balancing for Availablity, Security, and Scalability
     - Load Balancing at different network layers
     - Types of load balancers
@@ -49,3 +48,13 @@ description = "Topic by topic breakdowns of everything you need to know for the 
     - Identifying Network Logging and Monitoring Requirements
     - Metrics for Network Visibility
     - Capturing Baseline Network Performance
+- 1.5 Hybrid Routing and Connectivity
+    - Routing fundamentals
+    - Physical Interconnects at Layer 1 and Layer 2
+    - Encapsulation and Encryption
+    - Cross Account Resource Sharing
+    - Overlay networks
+    - Identifying Hybrid Network Connectivity Requirements
+    - Designing Redundent Hybrid Connectivity
+    - Influencing Traffic Flow with BGP
+    - Designing SDWAN Integrations
