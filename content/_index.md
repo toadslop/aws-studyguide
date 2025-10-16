@@ -25,6 +25,7 @@ description = "Topic by topic breakdowns of everything you need to know for the 
         - [Creating and Managing Domain Registrations](./articles/15-network-design-domain-registration)
     - 1.3 Load Balancing for Availability, Security, and Scalability
         - [Load Balancing At Different Network Layers](./articles/16-network-design-load-balancing-network-layers)
+        - [Load Balancer Types](./articles/17-network-design_load-balancer-types)
 
 ## Upcoming Articles
 
