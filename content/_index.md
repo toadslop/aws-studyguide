@@ -23,11 +23,12 @@ description = "Topic by topic breakdowns of everything you need to know for the 
         - [Route 53 Resolver Endpoints](./articles/13-network-design-resolver-endpoints)
         - [Route 53 for Global Traffic Management](./articles/14-network-design-route-53-global-traffic)
         - [Creating and Managing Domain Registrations](./articles/15-network-design-domain-registration)
+    - 1.3 Load Balancing for Availability, Security, and Scalability
+        - [Load Balancing At Different Network Layers](./articles/16-network-design-load-balancing-network-layers)
 
 ## Upcoming Articles
 
 - 1.3 Load Balancing for Availablity, Security, and Scalability
-    - Load Balancing at different network layers
     - Types of load balancers
     - Connectivity Patterns for Load Balancers
     - Scaling load balancers
