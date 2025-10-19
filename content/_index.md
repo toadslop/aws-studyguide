@@ -26,8 +26,7 @@ description = "Topic by topic breakdowns of everything you need to know for the 
     - 1.3 Load Balancing for Availability, Security, and Scalability
         - [Load Balancing At Different Network Layers](./articles/16-network-design-load-balancing-network-layers)
         - [Load Balancer Types](./articles/17-network-design_load-balancer-types)
-        - [Load Balancer Connectivity Patterns Part 1 — Public and Private](./articles/18-network-design-load-balancer-connectivity-patterns)
-        <!-- - [Load Balancer Connectivity Patterns Part 2 — xxx](./articles/18-network-design-load-balancer-connectivity-patterns) -->
+        - [Load Balancer Connectivity Patterns Part 1 — Internal](./articles/18-network-design-load-balancer-connectivity-patterns)
 
 ## Upcoming Articles
 

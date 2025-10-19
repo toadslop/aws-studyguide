@@ -1,5 +1,5 @@
 +++
-title="Load Balancer Connectivity Patterns Part 1: Simple Internal and External"
+title="Load Balancer Connectivity Patterns Part 1: Internal"
 date=2024-10-17
 
 [taxonomies]
@@ -10,104 +10,198 @@ toc = true
 comments = true
 +++
 
-Hey there, network nut-gatherers! 🐾 It’s Bit again — here to untangle one of my favorite topics: **connectivity patterns for load balancers**.
+Hey there, cloud burrowers! Bit the Chipmunk here, digging into one of the trickier corners of AWS networking: **internal load balancers**.
 
-This is a big topic so we'll split it two -- today we'll look at patterns for simple internal and external load balancers. In an upcoming article, we talk about more complex Hybrid, Multi-Region, and Edge scenarios!
+Many developers think “load balancer = public entry point.”
+But in real AWS environments, *most* load balancers never touch the internet — they live deep inside private networks, keeping traffic organized, secure, and scalable behind the scenes.
 
 <!--more-->
 
----
-
-## 🧭 1. The Visibility Spectrum
-
-In AWS, load balancers come in **two main flavors**:
-
-* **Internet-facing** – reachable from the public internet.
-* **Internal** – reachable only from within a VPC or through private connections (like VPC Peering or PrivateLink).
-
-The choice affects DNS resolution, target access, and how traffic flows through your architecture.
+Let’s explore the key **connectivity patterns** you’ll need to recognize on the AWS exam for **internal** load balancers.
 
 ---
 
-## ☀️ 2. Internet-Facing Load Balancers
+## 🧠 What Makes a Load Balancer “Internal”?
 
-| **Scenario**                  | **Design Pattern**             | **Exam Trigger / Clue**                                       |
-| ----------------------------- | ------------------------------ | ------------------------------------------------------------- |
-| Public web app or API               | **Internet-facing ALB**        | “Must terminate HTTPS; use WAF for protection.”                   |
-| Game servers or IoT endpoints | **Internet-facing NLB**        | “Requires static IPs or Elastic IPs for inbound connections.” |
+An internal load balancer isn’t reachable from the internet. It only has **private IPs** and **resolves to private DNS names**.
 
-💡 **Why It Matters:**
-Internet-facing load balancers expose a **public DNS name** (resolvable via public Route 53) and route to targets in private subnets.
-They often handle **TLS termination**, **WAF integration**, and **global routing** through Route 53.
+You’ll use it to route traffic:
 
-⚠️ **Exam Trap:**
-If the question says *“must be accessible only from internal networks”*, **don’t** pick an internet-facing load balancer — even if users connect via VPN. Use an internal LB instead.
+* Between tiers of an application (e.g., web → app → database)
+* Between VPCs (via PrivateLink or Peering)
+* From on-prem networks through VPN or Direct Connect
 
----
-
-## 🏠 3. Internal Load Balancers
-
-| **Scenario**                  | **Design Pattern**                     | **Exam Trigger / Clue**                                    |
-| ----------------------------- | -------------------------------------- | ---------------------------------------------------------- |
-| Microservices within a VPC    | **Internal ALB**                       | “Service-to-service communication within private subnets.” |
-| Database proxy or backend API | **Internal NLB**                       | “Needs TCP-level performance and no internet exposure.”    |
-| Internal-only web portal      | **Internal ALB + Private Hosted Zone** | “Accessible only to VPC instances or corporate VPN users.” |
-
-💡 **Why It Matters:**
-Internal load balancers **don’t get public IPs** — only private ones. They’re essential for secure, private architectures where traffic never goes over the internet.
-
-⚠️ **Exam Trap:**
-An “internal” ALB still uses private subnets but can route to **targets in any AZ**. Make sure the subnets used have a route to your backend targets — otherwise, you’ll have silent black holes instead of happy users.
+**Exam clue:**
+If a question says “no public endpoint,” “private connectivity,” or “traffic must stay within the VPC,” the answer probably involves an **internal ALB** or **internal NLB**.
 
 ---
 
-## 🔁 4. Cross-VPC Connectivity
+## 🧩 1. Single-VPC Internal Load Balancing
 
-Sometimes your acorns (uh, services) are stored across multiple VPCs. That’s when you need to think about **cross-VPC access** patterns.
+This is the simplest internal pattern — everything lives in one VPC.
 
-| **Pattern**                        | **How It Works**                                                              | **Use Case / Exam Clue**                                     |
-| ---------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| **VPC Peering + Internal NLB/ALB** | Peered VPCs exchange traffic privately using private IPs; load balancer for single app entrypoint and availability | “Two VPCs need full network access to each other, but need a single entrypoint to one or more highly available apps”     |
-| **PrivateLink (NLB-based)**        | Provider exposes an endpoint service via NLB; consumer connects via endpoint. | “One-way access between accounts or orgs; no route sharing.” |
-
-💡 **Why It Matters:**
-
-* **PrivateLink** is *provider-to-consumer only* — great for SaaS or cross-account use.
-* **VPC Peering** is *bidirectional* — better for full trust or internal app meshes.
-
-⚠️ **Exam Trap:**
-PrivateLink **requires an NLB** on the provider side. If the question mentions ALB with PrivateLink — that’s a trick! 🐿️
+| **Use Case**                      | **Pattern**                             | **Key Points**                                              |
+| --------------------------------- | --------------------------------------- | ----------------------------------------------------------- |
+| Multi-tier app (web → app → DB)   | **Internal ALB or NLB**                 | Front-end servers send traffic to backend tiers privately.  |
+| ECS or EKS service communication  | **Service-to-service via Internal NLB** | Load balances containers or pods within private subnets.    |
+| Simple microservices deployments | **Internal ALB + Service Discovery**    | Each service has its own target group; DNS handles routing. |
 
 ---
 
-## ⚖️ 5. Cross-Zone Load Balancing
+## 🌉 2. Cross-VPC: Shared Service or Consumer Patterns
 
-AWS regions have multiple Availability Zones (AZs). Cross-zone balancing decides whether your load balancer sends traffic across AZs or only within one.
+As organizations grow, it’s common to isolate workloads into separate VPCs (per environment, team, or account).
+But what happens when one app in VPC-A needs to access services another in VPC-B — privately? That's where cross-VPC patterns come in. These patterns are more complex because we're not just talking about load balancers -- we have to choose the correct network connectivity solution as well.
 
-| **LB Type** | **Cross-Zone Behavior**         | **Exam Tip**                                                  |
-| ----------- | ------------------------------- | ------------------------------------------------------------- |
-| **ALB**     | Always enabled; can’t turn off. | “Traffic automatically distributed evenly across AZs.”        |
-| **NLB**     | Optional; must be enabled.      | “Traffic only going to one AZ’s targets” → check if disabled. |
+### Option 1: **VPC Peering + Internal Load Balancer**
 
-💡 **Why It Matters:**
-Cross-zone balancing improves distribution but can increase **inter-AZ data transfer costs**.
-If the exam says *“minimize inter-AZ charges”*, disable cross-zone on NLB (cross-zone is free for ALB).
+**Scenario**: Services in VPC A must be able to communicate with services in VPC B.
+
+**Pattern**: Connect VPCs using VPC peering; front services with a load balancer to improve availability and resiliency
+
+💡 **Key Notes:**
+
+* The consumer VPC must add route table entries to the producer’s subnets via the peering connection.
+* If using DNS for routing, DNS resolution must be enabled for private zones or manually configured.
+
+⚠️ **Exam trap 1:**
+Peering doesn’t scale well — no transitive routing. For many-to-one or hub-spoke topologies, look at PrivateLink or Transit Gateway instead.
+
+⚠️ **Exam trap 2:**
+Peering enables full connectivity between the two VPCs — it is not an option if only the services backed by the load balancer should be accessible. If this is a requirement, PrivateLink is the correct pattern.
 
 ---
 
-## 🧠 6. Exam Tips Recap
+### Option 2: **PrivateLink (Endpoint Service)**
 
-| **Topic**       | **Remember This for the Exam**                                     |
-| --------------- | ------------------------------------------------------------------ |
-| Internet-facing | Public DNS name; HTTPS/WAF (for ALB); global access                |
-| Internal        | Private IPs; for intra-VPC or VPN users                            |
-| Cross-VPC       | NLB + PrivateLink (one-way) vs. ALB/NLB + Peering (full network access between VPCs) |
-| Cross-Zone      | ALB = always on, NLB = optional; affects NLB cost                  |
-| Security        | Internet-facing ≠ insecure — it’s about **exposure**, not **risk** |
+**Scenario**: Services in a VPC must be accessible to services in other VPCs without exposing full network connectivity.
+
+**Common Use Case**: One company provides a SaaS application to other companies; they want to provide access to the service only, without providing full network access to their VPC
+
+**Pattern**: Front services with an NLB and expose them to consumer VPCs via PrivateLink.
+
+💡 **Why PrivateLink Shines:**
+
+* Scales across many consumers.
+* Consumers see the service as a private IP in their own subnet.
+* Traffic never leaves the AWS backbone.
+
+⚠️ **Exam trap:**
+Only **NLBs** can be used as PrivateLink *endpoint services* — not ALBs.
+If a question says “service must be shared privately across accounts,” **PrivateLink** is the answer.
+
+---
+
+### Option 3: **Transit Gateway + Internal Load Balancers**
+
+When you have multiple VPCs and networks (including on-prem) that need to interconnect, **AWS Transit Gateway (TGW)** acts as the central hub. Use this pattern when you need more scale than VPC peering can offer.
+
+**Scenario**: Services in a VPC need to be reachable from a large number of other VPCs across a large organization.
+
+**Common Use Case**: Shared services VPC — a VPC that hosts common services needed across an organization
+
+💡 **Why This Matters:**
+
+* Simplifies routing — you don’t need full mesh peering.
+* Enables hybrid routing (DX/VPN to AWS).
+
+⚠️ **Exam tip:**
+TGW + Internal Load Balancer ≠ PrivateLink.
+PrivateLink is *service exposure*; TGW is *network-level connectivity*.
+
+---
+
+## 🏢 3. Hybrid Connectivity: Bridging AWS and On-Prem
+
+Hybrid load balancing patterns make sure traffic flows smoothly between AWS and on-prem environments — securely, privately, and resiliently.
+
+### 🏠 Pattern 1: AWS → On-Prem Services
+
+**Scenario:**
+You have AWS-based workloads (like EC2 apps or Lambda functions) that need to call **on-prem services** — maybe a legacy database or authentication service — over a **VPN or Direct Connect** link.
+
+**Design Pattern:**
+Use an **Internal NLB** in AWS to represent your on-prem endpoints.
+The NLB targets are the **private IPs of the on-prem systems**, reachable via DX or VPN.
+
+**Why this works:**
+
+* Keeps routing **simple** — AWS resources see a local endpoint (the NLB), not the remote IP.
+* Supports **health checks and failover** across multiple on-prem targets.
+* Enables **VPC service discovery** (e.g., via PrivateLink or Route 53 Private Hosted Zone).
+
+**Exam Trigger:**
+
+> “AWS workloads must connect to on-prem services over Direct Connect using private IPs.”
+> ✅ **Answer:** Internal NLB targeting on-prem IPs.
+
+---
+
+### ☁️ Pattern 2: On-Prem → AWS Services
+
+**Scenario:**
+You have **on-prem clients or applications** that access **services hosted in AWS** — maybe a REST API or a private web tier — over a **private connection (VPN or DX)**.
+
+**Design Pattern:**
+Deploy an **Internal ALB or NLB** in AWS to front those AWS services.
+On-prem clients resolve a **private DNS name** that maps to the load balancer’s private IPs.
+
+**Why this works:**
+
+* Keeps all traffic **off the public internet**.
+* The load balancer provides **high availability** and **multi-AZ failover** inside AWS.
+* Simplifies **network policy management** — you point all traffic to one endpoint instead of individual EC2 instances.
+
+**Exam Trigger:**
+
+> “On-prem clients must access AWS-hosted services privately via Direct Connect without exposing a public endpoint.”
+> ✅ **Answer:** Internal ALB or NLB fronting the AWS service.
+
+---
+
+### 🧠 Bit’s Exam Tip
+
+Remember, in both hybrid patterns:
+
+* You’re using **private IP addressing** — no public DNS or internet gateways involved.
+* **Internal load balancers** act as stable endpoints on the AWS side of the connection.
+* The key clue in the question is usually **“must use private connectivity (VPN/DX)”** or **“no internet exposure.”**
+
+
+---
+
+## 🧱 5. Internal Load Balancers for Service Mesh and Microservices
+
+Modern architectures often use **ECS**, **EKS**, or **App Mesh**, where internal LBs provide stable entry points for services.
+
+| **Pattern**                  | **Platform**                                  | **Use Case**                                          |
+| ---------------------------- | --------------------------------------------- | ----------------------------------------------------- |
+| ECS with multiple services   | ALB with multiple listeners and target groups | Layer 7 routing between services.                     |
+| EKS with ingress controllers | ALB or NLB managed by controller              | Ingress for Kubernetes workloads.                     |
+| App Mesh with NLB endpoints  | NLB as mesh entry point                       | Consistent TCP routing in microservice architectures. |
+
+💡 **Exam Clue:**
+When the question says *“services discover each other via DNS”* or *“containerized workloads scale automatically”*, internal LBs are often in play — usually managed automatically by ECS/EKS controllers. We'll talk more about these scenarios in future articles.
+
+---
+
+## 🧩 6. Internal Load Balancers in Multi-Region Designs
+
+Internal LBs don’t talk directly to the internet, but you can still create **multi-region private architectures** — for example, using **VPC peering across regions** or **Transit Gateway inter-region peering**.
+
+| **Pattern**                                          | **Use Case**                             | **Exam Clue**                                    |
+| ---------------------------------------------------- | ---------------------------------------- | ------------------------------------------------ |
+| Internal ALBs per region + Route 53 weighted routing | Private multi-region HA                  | “Must fail over privately across regions.”       |
+| Shared internal APIs in each region                  | PrivateLink endpoint services per region | “Private access from other accounts or regions.” |
+
+💡 **Key takeaway:**
+DNS-based failover still works for private endpoints — as long as you manage the Route 53 health checks and routing policies correctly.
 
 ---
 
 ## 🌰 Bit’s Final Bite
 
-Load balancers aren’t just traffic directors — they define the app's entrypoint and there impact *who can access it*.
-Understand the desired level of visibility first (external or internal) before designing a load balancing solution.
+Internal load balancers are the **backbone** of private AWS networks.
+They make hybrid apps scalable, secure, and reliable without ever exposing a single public IP.
+
+When you see “private,” “no internet,” or “cross-account access,” think **internal ALB**, **internal NLB**, or **PrivateLink** — and you’ll stay ahead of those tricky exam questions.
