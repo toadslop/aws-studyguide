@@ -70,19 +70,31 @@ For global performance, AWS provides services that bring your load balancers **c
 
 ---
 
-## 🧭 4. Cross-Account or Shared-Service Entry Points
+## 🧭 4. Centralized Ingress and Egress
 
-In multi-account AWS environments, you might want a **centralized entry point** for all internet-facing traffic.
-That’s where **shared load balancers** and **central ingress VPCs** come in.
+When multiple VPCs (or even accounts) need to enter or leave the AWS network through a single inspection point, AWS gives you the Gateway Load Balancer (GWLB).
+Think of it as a traffic checkpoint — packets come in, get inspected by security appliances (firewalls, IDS/IPS), and then continue on their journey. This is very different from how ALB/NLB work. ALB/NLB forward traffic to its destination; GWLB forwards traffic to an intermediary service before sending it on its way.
 
-| **Use Case**                          | **Pattern**                                                 | **Exam Trigger**                                                        |
-| ------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------------------- |
-| Central ingress for multiple accounts | Shared ALB or NLB via AWS Resource Access Manager (RAM)     | “Multiple accounts must share one internet-facing entry point.”         |
-| Centralized security or inspection    | NLB in a shared ‘security VPC’ fronting firewall appliances | “All incoming internet traffic must be inspected before reaching apps.” |
+### 🧩 How It Works
 
-💡 **Bit’s Tip:**
-This is your pattern for **hub-and-spoke architectures**.
-If the question says *“central ingress point,” “shared services VPC,”* or *“common security layer,”* think **shared ALB/NLB**.
+- A GWLB is deployed in a dedicated “inspection” or “security” VPC.
+- Network appliances (like firewalls or intrusion detection systems) run behind the GWLB.
+- Gateway Load Balancer Endpoints (GWLBE) live in the ingress/egress VPC — the one handling internet connectivity or cross-network routing.
+- Traffic from application VPCs reaches the inspection layer via Transit Gateway or VPC peering before being directed through the GWLBE → GWLB → appliance path.
+
+The GWLB preserves flow symmetry — every packet in a session follows the same path through the same appliance.
+
+| **Use Case**                                     | **Design Pattern**                                                | **Exam Trigger**                                                                     |
+| ------------------------------------------------ | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| Centralized inbound inspection                   | GWLB in security VPC + GWLBE in ingress VPC                       | “All internet-bound traffic must pass through a firewall before reaching workloads.” |
+| Centralized outbound inspection (egress control) | GWLB + NAT Gateway + route table directing through inspection VPC | “Outbound internet traffic must be inspected or logged.”                             |
+
+
+#### 💡 Bit’s Tip:
+If you see a question saying “traffic from multiple VPCs or accounts must be inspected before reaching the internet,” your answer is Gateway Load Balancer.
+If the question says “must route traffic to a shared firewall VPC without exposing the appliances,” again — GWLB is the right choice.
+
+But! If Gateway Load Balancer is not an option, look for AWS Network Firewall — it's an AWS native network firewall that can be used instead of GWLB + third-party newtork appliance.
 
 ---
 
@@ -93,8 +105,7 @@ If the question says *“central ingress point,” “shared services VPC,”* o
 | “Users access from the internet”               | Public ALB/NLB                  |
 | “Route users to the nearest Region”            | Route 53 latency routing + NLB/ALB |
 | “Global low-latency access to non-HTTP app”    | Global Accelerator + NLB        |
-| “Consolidate all inbound traffic in one place” | Centralized ingress VPC using ALB/NLB + TGW or PrivateLink for inter-VPC connectivity |
-| “Consolidate traffic through a single inspection layer” | Ingress VPC with Network Firewall/Gateway Load Balancer + security appliance |
+| “Consolidate all inbound/outbound traffic in one place” | Centralized ingress VPC using GWLB for traffic inspection |
 | “Offload TLS and cache for global web users”   | CloudFront + ALB origin         |
 | “Private instances behind public endpoint”     | ALB or NLB with private targets |
 
