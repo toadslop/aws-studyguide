@@ -28,13 +28,12 @@ description = "Topic by topic breakdowns of everything you need to know for the 
         - [Load Balancer Types](./articles/17-network-design_load-balancer-types)
         - [Load Balancer Connectivity Patterns Part 1 — Internal](./articles/18-network-design-load-balancer-connectivity-patterns)
         - [Load Balancer Connectivity Patterns Part 2 — External](./articles/19-network-design-load-balancer-connectivity-patterns-2)
-        - [Scaling Factors for Load Balancers](./articles/20-network-design-load-balancer-load-balancer-scaling)
+        - [Scaling Factors for Load Balancers](./articles/20-network-design-load-balancer-scaling)
+        - [Load Balancer Integrations](./articles/21-network-design-load-balancer-integrations)
 
 ## Upcoming Articles
 
 - 1.3 Load Balancing for Availablity, Security, and Scalability
-    - Scaling load balancers
-    - Load balancer integrations
     - Load balancer configuration options
     - Load balancer target group configurations
     - Load balancing on Kubernetes
