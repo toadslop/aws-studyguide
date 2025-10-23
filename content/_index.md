@@ -32,6 +32,7 @@ description = "Topic by topic breakdowns of everything you need to know for the 
         - [Load Balancer Integrations](./articles/21-network-design-load-balancer-integrations)
         - [Load Balancer Configuration Options](./articles/22-network-design-load-balancer-configuration)
         - [Load Balancer Target Groups and Listeners](./articles/23-network-design-load-balancer-target-groups)
+        - [Load Balancers on EKS](./articles/24-network-design-load-balancer-on-eks)
 
 ## Upcoming Articles
 
