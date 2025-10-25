@@ -33,12 +33,12 @@ description = "Topic by topic breakdowns of everything you need to know for the 
         - [Load Balancer Configuration Options](./articles/22-network-design-load-balancer-configuration)
         - [Load Balancer Target Groups and Listeners](./articles/23-network-design-load-balancer-target-groups)
         - [Load Balancers on EKS](./articles/24-network-design-load-balancer-on-eks)
+        - [Encryption and Authentication with Load Balancers](./articles/25-network-design-load-balancer-security)
+        - [Choosing the Right Load Balancer](./articles/26-network-design-choosing-a-load-balancer)
 
 ## Upcoming Articles
 
 - 1.3 Load Balancing for Availablity, Security, and Scalability
-    - Load balancing on Kubernetes
-    - Encryption and authentication with load balancers
     - Choosing a load balancer based on the use case
     - Load balancers and auto scaling
     - Adding a load balancer to existing deployments
