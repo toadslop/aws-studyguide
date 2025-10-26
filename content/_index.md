@@ -36,11 +36,10 @@ description = "Topic by topic breakdowns of everything you need to know for the 
         - [Encryption and Authentication with Load Balancers](./articles/25-network-design-load-balancer-security)
         - [Choosing the Right Load Balancer](./articles/26-network-design-choosing-a-load-balancer)
         - [Load Balancers and Auto Scaling](./articles/27-network-design-load-balancer-auto-scaling)
+        - [Adding a Load Balancer to an Existing App](./articles/28-network-design-load-balancer-exiting-apps)
 
 ## Upcoming Articles
 
-- 1.3 Load Balancing for Availablity, Security, and Scalability
-    - Adding a load balancer to existing deployments
 - 1.4 Logging and Monitoring on AWS and hybrid networks
     - Network Visibility with CloudWatch metrics, agents, logs, alarms, dashboards, and insights
     - Network Visibility with Transit Gateway Network Manager
