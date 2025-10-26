@@ -35,12 +35,11 @@ description = "Topic by topic breakdowns of everything you need to know for the 
         - [Load Balancers on EKS](./articles/24-network-design-load-balancer-on-eks)
         - [Encryption and Authentication with Load Balancers](./articles/25-network-design-load-balancer-security)
         - [Choosing the Right Load Balancer](./articles/26-network-design-choosing-a-load-balancer)
+        - [Load Balancers and Auto Scaling](./articles/27-network-design-load-balancer-auto-scaling)
 
 ## Upcoming Articles
 
 - 1.3 Load Balancing for Availablity, Security, and Scalability
-    - Choosing a load balancer based on the use case
-    - Load balancers and auto scaling
     - Adding a load balancer to existing deployments
 - 1.4 Logging and Monitoring on AWS and hybrid networks
     - Network Visibility with CloudWatch metrics, agents, logs, alarms, dashboards, and insights
