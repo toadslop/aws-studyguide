@@ -37,6 +37,8 @@ description = "Topic by topic breakdowns of everything you need to know for the 
         - [Choosing the Right Load Balancer](./articles/26-network-design-choosing-a-load-balancer)
         - [Load Balancers and Auto Scaling](./articles/27-network-design-load-balancer-auto-scaling)
         - [Adding a Load Balancer to an Existing App](./articles/28-network-design-load-balancer-exiting-apps)
+    - 1.4 Logging and Monitoring on AWS and hybrid networks
+        - [Network Visibility with CloudWatch and Related Services](./articles/29-network-design-load-cloudwatch)
 
 ## Upcoming Articles
 
