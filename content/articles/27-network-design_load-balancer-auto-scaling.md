@@ -4,7 +4,7 @@ date=2024-10-26
 
 [taxonomies]
 exams = ["Advanced Networking"]
-topics = ["network design", "load balancing"]
+topics = ["network design", "load balancing", "auto scaling"]
 [extra]
 toc = true
 comments = true

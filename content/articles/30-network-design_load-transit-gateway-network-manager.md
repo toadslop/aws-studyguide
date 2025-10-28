@@ -4,7 +4,7 @@ date=2024-10-26
 
 [taxonomies]
 exams = ["Advanced Networking"]
-topics = ["network design", "visibility"]
+topics = ["network design", "visibility", "Transit Gateway Network Manager"]
 [extra]
 toc = true
 comments = true
