@@ -39,11 +39,11 @@ description = "Topic by topic breakdowns of everything you need to know for the 
         - [Adding a Load Balancer to an Existing App](./articles/28-network-design-load-balancer-exiting-apps)
     - 1.4 Logging and Monitoring on AWS and hybrid networks
         - [Network Visibility with CloudWatch and Related Services](./articles/29-network-design-load-cloudwatch)
+        - [Network Visibility with Transit Gateway Network Manager](./articles/30-network-design-load-trasnit-gateway-network-manager)
 
 ## Upcoming Articles
 
 - 1.4 Logging and Monitoring on AWS and hybrid networks
-    - Network Visibility with CloudWatch metrics, agents, logs, alarms, dashboards, and insights
     - Network Visibility with Transit Gateway Network Manager
     - Analyzing Intra-VPC connectivity VPC Reachability Analyzer
     - Visibility with flow logs and traffic mirroring
