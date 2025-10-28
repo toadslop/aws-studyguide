@@ -40,12 +40,11 @@ description = "Topic by topic breakdowns of everything you need to know for the 
     - 1.4 Logging and Monitoring on AWS and hybrid networks
         - [Network Visibility with CloudWatch and Related Services](./articles/29-network-design-load-cloudwatch)
         - [Network Visibility with Transit Gateway Network Manager](./articles/30-network-design-load-transit-gateway-network-manager)
-        - [Analyzing Intra-VPC connectivity]()
+        - [Analyzing Intra-VPC connectivity](./articles/31-network-design-reachability-analyzer)
 
 ## Upcoming Articles
 
 - 1.4 Logging and Monitoring on AWS and hybrid networks
-    - Analyzing Intra-VPC connectivity VPC Reachability Analyzer
     - Visibility with flow logs and traffic mirroring
     - Network access logging
     - Identifying Network Logging and Monitoring Requirements
