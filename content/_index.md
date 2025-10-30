@@ -42,6 +42,7 @@ description = "Topic by topic breakdowns of everything you need to know for the 
         - [Network Visibility with Transit Gateway Network Manager](./articles/30-network-design-load-transit-gateway-network-manager)
         - [Analyzing Intra-VPC connectivity](./articles/31-network-design-reachability-analyzer)
         - [Flow Logs and Traffic Mirroring](./articles/32-network-design-flow-logs)
+        - [Access Logging](./articles/33-network-design-access-logging)
 
 ## Upcoming Articles
 
