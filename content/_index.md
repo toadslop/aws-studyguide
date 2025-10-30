@@ -43,12 +43,11 @@ description = "Topic by topic breakdowns of everything you need to know for the 
         - [Analyzing Intra-VPC connectivity](./articles/31-network-design-reachability-analyzer)
         - [Flow Logs and Traffic Mirroring](./articles/32-network-design-flow-logs)
         - [Access Logging](./articles/33-network-design-access-logging)
+        - [Identifying Logging and Monitoring Requirements](./articles/34-network-design-identifying-monitoring-requirements)
 
 ## Upcoming Articles
 
 - 1.4 Logging and Monitoring on AWS and hybrid networks
-    - Network access logging
-    - Identifying Network Logging and Monitoring Requirements
     - Metrics for Network Visibility
     - Capturing Baseline Network Performance
 - 1.5 Hybrid Routing and Connectivity
