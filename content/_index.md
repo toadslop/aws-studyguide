@@ -44,11 +44,11 @@ description = "Topic by topic breakdowns of everything you need to know for the 
         - [Flow Logs and Traffic Mirroring](./articles/32-network-design-flow-logs)
         - [Access Logging](./articles/33-network-design-access-logging)
         - [Identifying Logging and Monitoring Requirements](./articles/34-network-design-identifying-monitoring-requirements)
+        - [Recommending Network Monitoring Metrics](./articles/35-network-design-recommending-metrics)
 
 ## Upcoming Articles
 
 - 1.4 Logging and Monitoring on AWS and hybrid networks
-    - Metrics for Network Visibility
     - Capturing Baseline Network Performance
 - 1.5 Hybrid Routing and Connectivity
     - Routing fundamentals
