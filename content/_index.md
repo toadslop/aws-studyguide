@@ -45,11 +45,10 @@ description = "Topic by topic breakdowns of everything you need to know for the 
         - [Access Logging](./articles/33-network-design-access-logging)
         - [Identifying Logging and Monitoring Requirements](./articles/34-network-design-identifying-monitoring-requirements)
         - [Recommending Network Monitoring Metrics](./articles/35-network-design-recommending-metrics)
+        - [Capturing baseline network performance](./articles/36-network-design-establishing-a-baseline)
 
 ## Upcoming Articles
 
-- 1.4 Logging and Monitoring on AWS and hybrid networks
-    - Capturing Baseline Network Performance
 - 1.5 Hybrid Routing and Connectivity
     - Routing fundamentals
     - Physical Interconnects at Layer 1 and Layer 2
