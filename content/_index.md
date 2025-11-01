@@ -46,6 +46,8 @@ description = "Topic by topic breakdowns of everything you need to know for the 
         - [Identifying Logging and Monitoring Requirements](./articles/34-network-design-identifying-monitoring-requirements)
         - [Recommending Network Monitoring Metrics](./articles/35-network-design-recommending-metrics)
         - [Capturing baseline network performance](./articles/36-network-design-establishing-a-baseline)
+    - 1.5 Hybrid Routing and Connectivity
+        - [Routing Fundamentals](./articles/37-network-design-routing-basics)
 
 ## Upcoming Articles
 
